@@ -417,6 +417,17 @@ html.site-loading #app > #fly{opacity:0!important;visibility:hidden!important}
 html.site-loading #shapeLoader{display:grid!important;opacity:1!important;visibility:visible!important}
 html.site-loading #shapeLoader .shape-loader-mark{display:grid!important;opacity:1!important;visibility:visible!important}
 html.site-loading #shapeLoader .shape-loader-mark span{visibility:visible!important}
+/* Shape-loader refinement: faster hollow morph and exact-position, no-fade handoff */
+.shape-loader-mark{background:transparent!important;border:6px solid #ad5054!important;animation:shapePulse .48s ease-in-out infinite alternate!important}
+@keyframes shapePulse{from{border-radius:50%;transform:scale(.9)}to{border-radius:0;transform:scale(1)}}
+.shape-loader{display:block!important}
+.shape-loader-mark{position:absolute!important;left:50%!important;top:46%!important;translate:-50% -50%!important}
+html.loader-to-logo .shape-loader-mark{left:var(--logo-x,50%)!important;top:var(--logo-y,46%)!important;width:var(--logo-width,300px)!important;height:var(--logo-height,90px)!important;animation:none!important;border-radius:0!important;transform:none!important;background:transparent!important;transition:left .72s cubic-bezier(.2,.75,.2,1),top .72s cubic-bezier(.2,.75,.2,1),width .72s cubic-bezier(.2,.75,.2,1),height .72s cubic-bezier(.2,.75,.2,1)!important}
+html.loader-to-logo .shape-loader-mark span{opacity:0!important}
+html.loader-handoff #app{opacity:1!important;visibility:visible!important}
+html.loader-handoff #app > #fly{visibility:visible!important;opacity:1!important}
+html.loader-handoff .shape-loader{opacity:1!important;visibility:visible!important;transition:none!important}
+html:not(.site-loading):not(.loader-handoff) .shape-loader{opacity:0;visibility:hidden;transition:none!important}
 </style></head><body>
 <div class="shape-loader" id="shapeLoader" aria-label="Website wordt geladen" role="status"><div class="shape-loader-mark"><span>STUDIO WERKZAAM</span></div></div><div class="app" id="app"><header class="header"><button class="about-back" id="aboutBack" type="button" aria-label="Terug naar portfolio"><span class="back-arrow" aria-hidden="true">←</span><span>STUDIO WERKZAAM</span></button><button class="brand" id="smallLogo" type="button" aria-label="Terug naar begin">STUDIO<br>WERKZAAM</button><nav><button id="about">ABOUT</button><button id="contact">CONTACT</button></nav></header><div class="frame" id="frame" role="button" tabindex="0" aria-label="Open het geselecteerde project"><div class="layer" id="old"></div><div class="layer" id="fresh"></div></div><section class="contact-content" id="contactContent" aria-label="Contact Studio Werkzaam" aria-hidden="true" hidden><div class="contact-left"><h1>LET’S TALK</h1><p>Een idee, een vraag of een project? Neem gerust contact op.</p><div class="contact-links"><a id="contactLinkedin" aria-disabled="true"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.2 8.6H2.4V21h2.8V8.6ZM3.8 2.5a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM21 13.8c0-3.3-1.8-5.2-4.3-5.2-1.7 0-2.5.9-3 1.6V8.6h-2.8V21h2.8v-6.9c0-1.8.4-3 2.1-3 1.7 0 2.3 1.2 2.3 3.1V21H21v-7.2Z"/></svg></span><span>LINKEDIN</span><span class="contact-link-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M8 6h10v10"/></svg></span></a><a id="contactWhatsapp" aria-disabled="true"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 11.5a8.4 8.4 0 0 1-12.3 7.4L3 20.5l1.7-4.9a8.4 8.4 0 1 1 15.7-4.1Z"/><path d="M8.3 8.1c-.4.3-.7.8-.6 1.4.3 2.5 3.2 5.5 5.9 6 .7.1 1.3-.2 1.7-.7l.6-.9-2.5-1.2-.9 1c-1.3-.5-2.3-1.6-2.9-2.8l.9-.9-1.2-2.5-1 .6Z"/></svg></span><span>WHATSAPP</span><span class="contact-link-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M8 6h10v10"/></svg></span></a><a id="contactEmail" aria-disabled="true"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span>E-MAIL</span><span class="contact-link-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M8 6h10v10"/></svg></span></a></div></div><div class="contact-right"><h2>STUUR EEN BERICHT</h2><form id="contactForm"><label for="contactName">NAAM</label><input id="contactName" name="name" autocomplete="name" required placeholder="Jouw naam"><label for="contactMail">E-MAIL</label><input id="contactMail" name="email" type="email" autocomplete="email" required placeholder="Jouw e-mailadres"><label for="contactMessage">BERICHT</label><textarea id="contactMessage" name="message" rows="4" required placeholder="Waar kan ik je mee helpen?"></textarea><button type="submit">VERSTUUR BERICHT <svg class="submit-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M8 6h10v10"/></svg></button><p class="contact-feedback" id="contactFeedback" role="status"></p></form></div></section><section class="about-content" id="aboutContent" aria-label="Over Studio Werkzaam" aria-hidden="true" hidden><div class="about-copy-mask"><div class="about-copy"><h1 id="aboutHeading">STUDIO WERKZAAM</h1><p id="aboutParagraph">Studio Werkzaam is een grafisch ontwerp- en dtp-studio met oog voor detail en liefde voor helder, doeltreffend ontwerp. Van huisstijlen en drukwerk tot digitale uitingen — ik help merken en mensen hun verhaal visueel sterk en zorgvuldig te vertellen.</p><button class="about-connect" id="aboutConnect">LET’S CONNECT &nbsp; →</button></div></div><div class="about-photo-mask"><img class="about-photo" id="aboutPhoto" src="./Zwart-wit%20portret%20met%20transparante%20achtergrond.png" alt="Zwart-witportret van de ontwerpster van Studio Werkzaam"></div></section><div class="intro" id="intro">STUDIO WERKZAAM</div><div class="sub" id="sub">GRAFISCH ONTWERP EN DTP</div><svg width="0" height="0" aria-hidden="true" style="position:absolute;pointer-events:none"><defs><filter id="wingCurve" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.035" numOctaves="1" seed="4" result="noise"/><feDisplacementMap id="wingBend" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg><div class="fly" id="fly"><img class="part left" id="left" src="./linkervleugel.webp" alt=""><img class="part body" src="./lichaam.webp" alt=""><img class="part right" id="right" src="./rechtervleugel.webp" alt=""></div><div class="hovercaption" id="hovercaption" aria-live="polite"></div><div class="arrows"><button id="up" aria-label="Vorig project">↑</button><button id="down" aria-label="Volgend project">↓</button></div><footer class="footer"><span id="label">INTRO / 00</span><button class="hintbutton" id="hint">SCROLL TO EXPLORE ↓</button></footer><div class="progress" id="progress"></div><div class="dock-zone" id="dockZone"><div class="dock-trigger" id="dockTrigger"></div><div class="dock" id="dock" aria-label="Spring naar een project"></div></div><section class="page" id="page"><div class="pagein"><button class="back" id="back">← ALLE PROJECTEN</button><div class="eyebrow" id="eyebrow"></div><h1 id="title"></h1><div class="hero" id="hero"></div><div class="desc"><span>OVER DIT PROJECT</span><p id="description"></p></div><button class="next" id="next">VOLGEND PROJECT ↗</button></div></section><section class="info" id="info" aria-label="Informatie"><div class="infoinner"><button class="back" id="infoBack">← TERUG NAAR PROJECTEN</button><div class="eyebrow" id="infoEyebrow"></div><h1 id="infoTitle"></h1><p id="infoBody"></p></div></section></div>
 <script>
@@ -453,21 +464,25 @@ function finishLoader(){
  if(loaderEnded)return;
  loaderEnded=true;
  const html=document.documentElement;
- html.classList.add('loader-to-logo');
  const mark=document.querySelector('.shape-loader-mark');
- if(!mark){document.documentElement.classList.remove("site-loading");return}
- const frame=dims(0);
- mark.style.setProperty('--logo-width',frame.w+'px');
- mark.style.setProperty('--logo-height',frame.h+'px');
+ const actual=document.getElementById('frame');
+ if(!mark||!actual){html.classList.remove('site-loading');return}
+ const rect=actual.getBoundingClientRect();
+ mark.style.setProperty('--logo-width',rect.width+'px');
+ mark.style.setProperty('--logo-height',rect.height+'px');
+ mark.style.setProperty('--logo-x',(rect.left+rect.width/2)+'px');
+ mark.style.setProperty('--logo-y',(rect.top+rect.height/2)+'px');
+ html.classList.add('loader-to-logo');
  setTimeout(()=>{
+  // Reveal the real frame underneath the perfectly aligned loader outline.
   html.classList.remove('site-loading');
-  html.classList.add('site-revealing');
-  setTimeout(()=>{
-   html.classList.remove('loader-to-logo','site-revealing');
+  html.classList.add('loader-handoff');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
    document.getElementById('shapeLoader')?.remove();
+   html.classList.remove('loader-to-logo','loader-handoff');
    setTimeout(preparePortfolioArtworkLater,600);
-  },800);
- },900);
+  }));
+ },780);
 }
 function markLoaderReady(){
  if(loaderReady)return;
